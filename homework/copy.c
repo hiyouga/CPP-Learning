@@ -16,7 +16,7 @@ int main()
         }else{
             flag=0;
         }
-        printf("%c", buffer);
+        //printf("%c", buffer);
         if(buffer=='\t') buffer=' ';
         fputc(buffer, out);
     }
