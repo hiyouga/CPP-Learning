@@ -5,7 +5,6 @@
 using namespace std;
 
 int a[MAXSIZE], temp[MAXSIZE];
-
 void Merge(int * f, int lt, int mid, int rt)
 {
     int p = lt;//mid in
