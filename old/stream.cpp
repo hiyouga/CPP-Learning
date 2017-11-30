@@ -6,8 +6,8 @@ using namespace std;
 char a[10000000];
 main()
 {
-    int n,u;
-    cin>>a;
+	int n,u;
+	cin>>a;
     n=strlen(a);
     long sum=0;
     if(a[0]=='-')

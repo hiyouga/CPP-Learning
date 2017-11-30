@@ -1,11 +1,18 @@
 @echo off
-mode con cols=60 lines=20
+mode con cols=60 lines=40
 title MinGW CPP compiler by hiyouga
 color 09
 echo Welcome to MinGW CPP compiler by hiyouga
 echo Now is: %date:~0,10% %time:~0,8%
 echo.
 cd %cd%
+if "%1" == "" (
+	color 0c
+	echo No input file
+	echo Please push down to close the window.
+	pause>nul
+	exit
+)
 echo Compiling...
 if %~x1 == .cpp (
 	g++ %~d1%~p1%~n1%~x1 -o %~n1

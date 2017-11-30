@@ -24,6 +24,7 @@ int main(){
             if(d<=0){
                 cout<<"你的钱已经花光了！"<<endl;
                 cout<<"Game over"<<endl<<"您共撑了"<<e<<"轮"<<endl;
+                break;
             }
         }
         e++;

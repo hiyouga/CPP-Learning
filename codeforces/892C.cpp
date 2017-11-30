@@ -4,7 +4,8 @@
 
 using namespace std;
 
-long long gcd(long long x, long long y){
+long long gcd(long long x, long long y)
+{
     if(x > y) return gcd(y,x);
     if(x == 0) return y;
     return gcd(y%x,x);

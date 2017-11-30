@@ -1,6 +1,8 @@
 #include<iostream>
 #include<cstring>
+
 using namespace std;
+
 int judge(int a,int b){
     if(a<b){
         a^=b;
@@ -14,6 +16,7 @@ int judge(int a,int b){
             return 1;
     return 0;
 }
+
 int main()
 {
     int a,b;
