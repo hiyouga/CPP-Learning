@@ -1,43 +1,36 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <ctype.h>
-
+#define MAXN 9999
 int main()
 {
-    int i = 0, j, t, k = 0, flag, m = 0, n = 0;
-    char c, r[999], p[999], s[9999];
+    ///初始化变量
+    int i = 0, j, t, v, k = 0, m = 0, n = 0;
+    char c, rep[MAXN], ple[MAXN], str[MAXN];
     FILE * in, * out;
+    ///读入变量
     in = fopen("filein.txt", "r");
     out = fopen("fileout.txt", "w");
-    while((c = getchar()) != '\n')
-        r[m++] = tolower(c);
-    while((c = getchar()) != '\n')
-        p[n++] = c;
-    while((c = fgetc(in)) != EOF){
-        s[k++] = c;
-    }
+    while((c = getchar()) != '\n')///被替换字符串
+        rep[m++] = tolower(c);///提前转换为小写
+    while((c = getchar()) != '\n')///待替换字符串
+        ple[n++] = c;
+    while((c = fgetc(in)) != EOF)///文件内容
+        str[k++] = c;
+    ///文件处理
     while(i < k){
-        if(tolower(s[i]) == r[0]){
-            j = 0, t = i, flag = 1;
-            while(j < m){
-                if(tolower(s[t++]) != r[j++]){
-                    flag = 0;
-                    break;
-                }
+        j = 0, t = i;///t:备份i
+        while(tolower(str[t++]) == rep[j++]){///进入比较处理
+            if(rep[j] == '\0'){///匹配成功
+                i += j;
+                for(v = 0; ple[v] != '\0'; v++)///输出新字符串
+                    fputc(ple[v], out);
+                break;
             }
-            if(flag){
-                for(j = 0; j < n; j++){
-                    fputc(p[j], out);
-                }
-                i += m;
-            }else{
-                fputc(s[i], out);
-                i++;
-            }
-        }else{
-            fputc(s[i], out);
-            i++;
         }
+        fputc(str[i], out);
+        i++;
     }
+    ///文件关闭
     fclose(in);
     fclose(out);
     return 0;
