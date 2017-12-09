@@ -5,9 +5,16 @@
 
 using namespace std;
 
-char kotori(unsigned long long k)
-{
+string s[10005];
 
+string kotori(int k)
+{
+    if(s[k][0] != '\0'){
+        return s[k];
+    }else{
+        s[k] = "What are you doing while sending \""+kotori(k-1)+"\"? Are you busy? Will you send \""+kotori(k-1)+"\"?";
+        return s[k];
+    }
 }
 
 int main()
@@ -15,9 +22,8 @@ int main()
     NOTLE
     int q, n;
     unsigned long long k;
-    s[0] = "What are you doing at the end of the world? Are you busy? Will you save us?";
-    //cout << kotori(3);
     cin >> q;
+    s[0] = "What are you doing at the end of the world? Are you busy? Will you save us?";
     for(int i = 0; i < q; i++){
         cin >> n >> k;
         kotori(n);
