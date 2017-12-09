@@ -1,5 +1,5 @@
 @echo off
-mode con cols=60 lines=40
+mode con cols=65 lines=35
 title MinGW CPP compiler by hiyouga
 color 09
 echo Welcome to MinGW CPP compiler by hiyouga
@@ -15,9 +15,9 @@ if "%1" == "" (
 )
 echo Compiling...
 if %~x1 == .cpp (
-	g++ %~d1%~p1%~n1%~x1 -o %~n1
+	g++ %~d1%~p1%~n1%~x1 -O2 -std=c++11 -o %~n1
 ) else (
-	gcc %~d1%~p1%~n1%~x1 -o %~n1
+	gcc %~d1%~p1%~n1%~x1 -O2 -std=c99 -o %~n1
 )
 if %errorlevel% == 1 (
 	color 0c
