@@ -1,17 +1,19 @@
 #include <stdio.h>
 
-int rev(char * a, int l)
+int rev(char * a, int l, int f)
 {
     int i, j, flag = 1, k = 0;
     char temp;
     if(l == 1) return 1;
     for(i = 0, j = l-1; i <= j; i++, j--){
-        if(a[i] == '0' && flag){
-            j++, k++;
-            continue;
-        }else{
-            flag = 0;
-        }
+        if(f){
+        	if(a[i] == '0' && flag){
+	            j++, k++;
+	            continue;
+	        }else{
+	            flag = 0;
+	        }
+	    }
         temp = a[j];
         a[j] = a[i];
         a[i] = temp;
@@ -32,8 +34,8 @@ int main()
         b[n++] = c;
     a[m] = '\0', b[n] = '\0';
     //printf("%s\n%s\n", a, b);return 0;
-    m = rev(a, m);
-    n = rev(b, n);
+    m = rev(a, m, 1);
+    n = rev(b, n, 1);
     if(m+n == 0){
         printf("0\n");
         return 0;
@@ -70,7 +72,7 @@ int main()
             d = 0;
         }
     }
-    k = rev(s, k);
+    k = rev(s, k, 0);
     for(i = 0; i < k; i++){
         if(s[i] == '0' && flag){
             continue;
