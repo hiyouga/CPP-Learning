@@ -1,13 +1,12 @@
 #include <iostream>
-#include <cctype>
 #include <cstring>
-#include <sstream>
 #define NOTLE ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 
 using namespace std;
 
 int main()
 {
+    NOTLE
     int n, a, m;
     cin >> n;
     int mon[n];

@@ -11,7 +11,7 @@ int main()
 {
 	using namespace std;
 	char temp, op, x[64];
-	Stack ep;
+	Stack<char> ep;
     while (cin >> x && x[0] != '=') {
         if (isdigit(x[0])) {
             cout << x;

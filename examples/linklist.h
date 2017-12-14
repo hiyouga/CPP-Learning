@@ -3,42 +3,47 @@
 #ifndef LINKLIST_H_
 #define LINKLIST_H_
 
-typedef int Elemtype;
+template <typename T>
+struct LinkNode
+{
+	T val;
+	LinkNode<T> * nxt;
+};
 
-typedef struct {
-	Elemtype val;
-	LinkNode * nxt;
-} LinkNode;
-
+template <typename T>
 class LinkList
 {
 private:
-	LinkNode * head;
+	LinkNode<T> * head;
 public:
 	LinkList();
 	~LinkList();
-	void CreateHead(Elemtype * a, int n);
-	void CreateTail(Elemtype * a, int n);
+	void CreateHead(T * a, int n);
+	void CreateTail(T * a, int n);
+	bool isempty() const;
 	void DispList();
 	int ListLength();
-	bool GetList(int i, Elemtype &e);
-	int FindList(Elemtype e);
-	bool InsertList(int i, Elemtype e);
+	bool GetList(int i, T &e);
+	int FindList(T e);
+	bool InsertList(int i, T e);
 	bool DeleteList(int i);
 	void SortList();
+	void ReverseList();
 };
 
 #endif
 
-LinkList::LinkList()
+template <typename T>
+LinkList<T>::LinkList()
 {
-	head = new LinkNode;
+	head = new LinkNode<T>();
 	head -> nxt = NULL;
 }
 
-LinkList::~LinkList()
+template <typename T>
+LinkList<T>::~LinkList()
 {
-	LinkNode * pre, * p;
+	LinkNode<T> * pre, * p;
 	pre = head;
 	p = pre -> nxt;
 	while(p != NULL){
@@ -49,24 +54,26 @@ LinkList::~LinkList()
 	delete pre;
 }
 
-void LinkList::CreateHead(Elemtype * a, int n)
+template <typename T>
+void LinkList<T>::CreateHead(T * a, int n)
 {
-	LinkNode * s;
+	LinkNode<T> * s;
 	head -> nxt = NULL;
 	for(int i = 0; i < n; i++){
-		s = new LinkNode;
+		s = new LinkNode<T>();
 		s -> val = a[i];
 		s -> nxt = head -> nxt;
 		head -> nxt = s;
 	}
 }
 
-void LinkList::CreateTail(Elemtype * a, int n)
+template <typename T>
+void LinkList<T>::CreateTail(T * a, int n)
 {
-	LinkNode * s, * r;
+	LinkNode<T> * s, * r;
 	r = head;
 	for(int i = 0; i < n; i++){
-		s = new LinkNode;
+		s = new LinkNode<T>();
 		s -> val = a[i];
 		r -> nxt = s;
 		r = s;
@@ -74,11 +81,12 @@ void LinkList::CreateTail(Elemtype * a, int n)
 	r -> nxt = NULL;
 }
 
-void DispList()
+template <typename T>
+void LinkList<T>::DispList()
 {
 	using std::cout;
 	using std::endl;
-	LinkNode * p;
+	LinkNode<T> * p;
 	p = head -> nxt;
 	while(p != NULL){
 		cout << p -> val << " ";
@@ -87,10 +95,17 @@ void DispList()
 	cout << endl;
 }
 
-int ListLength()
+template <typename T>
+bool LinkList<T>::isempty()
+{
+	return (head->nxt == NULL);
+}
+
+template <typename T>
+int LinkList<T>::ListLength()
 {
 	int i = 0;
-	LinkNode * p;
+	LinkNode<T> * p;
 	p = head;
 	while(p -> nxt != NULL){
 		i++;
@@ -99,10 +114,11 @@ int ListLength()
 	return i;
 }
 
-bool GetList(int i, Elemtype &e)
+template <typename T>
+bool LinkList<T>::GetList(int i, T &e)
 {
 	int j = 0;
-	LinkNode * p;
+	LinkNode<T> * p;
 	p = head;
 	while(j < i && p != NULL){
 		j++;
@@ -116,10 +132,11 @@ bool GetList(int i, Elemtype &e)
 	}
 }
 
-int FindList(Elemtype e)
+template <typename T>
+int LinkList<T>::FindList(T e)
 {
 	int i = 1;
-	LinkNode * p;
+	LinkNode<T> * p;
 	p = head -> nxt;
 	while(p != NULL && p -> val != e){
 		p = p -> nxt;
@@ -131,10 +148,11 @@ int FindList(Elemtype e)
 		return i;
 }
 
-bool InsertList(int i, Elemtype e)
+template <typename T>
+bool LinkList<T>::InsertList(int i, T e)
 {
 	int j = 0;
-	LinkNode * s, * p;
+	LinkNode<T> * s, * p;
 	if(i < 1)
 		return false;
 	p = head;
@@ -145,7 +163,7 @@ bool InsertList(int i, Elemtype e)
 	if(p == NULL)
 		return false;
 	else {
-		s = new LinkNode;
+		s = new LinkNode<T>();
 		s -> val = e;
 		s -> nxt = p -> nxt;
 		p -> nxt = s;
@@ -153,10 +171,11 @@ bool InsertList(int i, Elemtype e)
 	}
 }
 
-bool DeleteList(int i)
+template <typename T>
+bool LinkList<T>::DeleteList(int i)
 {
 	int j = 0;;
-	LinkNode * q, * p;
+	LinkNode<T> * q, * p;
 	if(i < 1)
 		return false;
 	p = head;
@@ -173,5 +192,28 @@ bool DeleteList(int i)
 		p -> nxt = q -> nxt;
 		delete q;
 		return true;
+	}
+}
+
+template <typename T>
+void LinkList<T>::SortList()
+{
+	LinkNode<T> * p;
+	p = head;
+	
+
+}
+
+template <typename T>
+void LinkList<T>::ReverseList()
+{
+	LinkNode<T> * p, * q;
+	p = head -> nxt;
+	head -> nxt = NULL;
+	while(p != NULL){
+		q = p -> nxt;
+		p -> nxt = head -> nxt;
+		head -> nxt = p;
+		p = q;
 	}
 }

@@ -3,8 +3,8 @@
 #ifndef STACK_H_
 #define STACK_H_
 
-typedef char Elemtype;
 
+template <class Elemtype>
 class Stack
 {
 private:
@@ -23,27 +23,32 @@ public:
 
 #endif
 
-Stack::Stack()
+template <class Elemtype>
+Stack<Elemtype>::Stack()
 {
 	_top = 0;
 }
 
-Stack::~Stack()
+template <class Elemtype>
+Stack<Elemtype>::~Stack()
 {
 	;
 }
 
-bool Stack::isempty() const
+template <class Elemtype>
+bool Stack<Elemtype>::isempty() const
 {
 	return _top == 0;
 }
 
-bool Stack::isfull() const
+template <class Elemtype>
+bool Stack<Elemtype>::isfull() const
 {
 	return _top == MAX;
 }
 
-bool Stack::push(const Elemtype & item)
+template <class Elemtype>
+bool Stack<Elemtype>::push(const Elemtype & item)
 {
 	if (_top < MAX) {
 		_stack[_top++] = item;
@@ -53,7 +58,8 @@ bool Stack::push(const Elemtype & item)
 	}
 }
 
-bool Stack::pop(Elemtype & item)
+template <class Elemtype>
+bool Stack<Elemtype>::pop(Elemtype & item)
 {
 	if(_top > 0) {
 		item = _stack[--_top];
@@ -63,7 +69,8 @@ bool Stack::pop(Elemtype & item)
 	}
 }
 
-bool Stack::get(Elemtype & item)
+template <class Elemtype>
+bool Stack<Elemtype>::get(Elemtype & item)
 {
 	if(_top > 0) {
 		item = _stack[_top-1];

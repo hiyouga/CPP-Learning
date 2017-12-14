@@ -1,8 +1,5 @@
 #include <iostream>
 #include <algorithm>
-#include <cctype>
-#include <cstring>
-#include <sstream>
 #define NOTLE ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 
 using namespace std;
