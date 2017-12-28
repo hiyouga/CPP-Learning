@@ -1,3 +1,7 @@
+/*
+ * ä¸ï¼æƒ³ï¼å†™ï¼äº†ï¼
+ * å‚è§example1c.c
+*/
 //C calculator BY hoshi_hiyouga AT 2017-11-10 03:22 LAST MODIFIED IN 2017-11-21 23:11
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,26 +18,26 @@ typedef struct node * npt;
 struct node {
     int type;//0:blank 1:int 2:char
     int data;
-}stk[MAXSIZE], ep[MAXSIZE];//stk:ÔËËã·û ep:±í´ïÊ½
+}stk[MAXSIZE], ep[MAXSIZE];//stk:è¿ç®—ç¬¦ ep:è¡¨è¾¾å¼
 
-npt init(npt p)//³õÊ¼»¯Õ»
+npt init(npt p)//åˆå§‹åŒ–æ ˆ
 {
     p -> type = 0;
     return p;
 }
 
-npt push(npt temp,npt p)//Ñ¹Õ»
+npt push(npt temp,npt p)//å‹æ ˆ
 {
     memcpy(++p, temp, sizeof(struct node));
     return p;
 }
 
-/*npt pop(npt p)//µ¯Õ» Êµ¼ÊÉÏ²»¾ÍÊÇ--pÂï¡ú_¡ú
+/*npt pop(npt p)//å¼¹æ ˆ å®é™…ä¸Šä¸å°±æ˜¯--på˜›â†’_â†’
 {
     return --p;
 }*/
 
-void prt(npt p)//´òÓ¡Õ» µ÷ÊÔÓÃ
+void prt(npt p)//æ‰“å°æ ˆ è°ƒè¯•ç”¨
 {
     while(p -> type != 0){
         if(p -> type == INT){
@@ -45,7 +49,7 @@ void prt(npt p)//´òÓ¡Õ» µ÷ÊÔÓÃ
     }
 }
 
-int isp(char k)//¾ÉÔªËØµÄÓÅÏÈ¼¶
+int isp(char k)//æ—§å…ƒç´ çš„ä¼˜å…ˆçº§
 {
     switch(k){
     case '+':
@@ -65,7 +69,7 @@ int isp(char k)//¾ÉÔªËØµÄÓÅÏÈ¼¶
     }
 }
 
-int icp(char k)//ĞÂÔªËØµÄÓÅÏÈ¼¶
+int icp(char k)//æ–°å…ƒç´ çš„ä¼˜å…ˆçº§
 {
     switch(k){
     case '+':
@@ -87,13 +91,13 @@ int icp(char k)//ĞÂÔªËØµÄÓÅÏÈ¼¶
 
 int main()
 {
-    struct node op,*ptr,*pte;//op:ÊäÈë
-    ptr = init(stk);//²Ù×÷·ûÕ»
-    pte = init(ep);//±í´ïÊ½Õ»
+    struct node op,*ptr,*pte;//op:è¾“å…¥
+    ptr = init(stk);//æ“ä½œç¬¦æ ˆ
+    pte = init(ep);//è¡¨è¾¾å¼æ ˆ
     int i;
     char t, x[64];
     t = getchar();
-    while(t != EOF && t != '\n'){//!ÖĞ×º×ªºó×º
+    while(t != EOF && t != '\n'){//!ä¸­ç¼€è½¬åç¼€
         i = 0;
         if(isdigit(t)){
             while(isdigit(t)){
@@ -109,11 +113,11 @@ int main()
             t=getchar();
             continue;
         }
-        if(isdigit(x[0])) {//Êı×Ö
+        if(isdigit(x[0])) {//æ•°å­—
             op.type = INT;
             op.data = atoi(x);
             pte = push(&op,pte);
-        } else {//ÔËËã·û
+        } else {//è¿ç®—ç¬¦
             op.type = CHAR;
             op.data = x[0];
             if(ptr->type == 0) {
@@ -136,14 +140,14 @@ int main()
         }
     }
     //prt(ptr);printf("\n");prt(pte);printf("\n");
-    while(pte->type != 0){//!·­×ª±í´ïÊ½
+    while(pte->type != 0){//!ç¿»è½¬è¡¨è¾¾å¼
         ptr = push(pte,ptr);
         pop(pte);
     }
-    while(ptr->type != 0){//!¼ÆËãºó×º±í´ïÊ½
+    while(ptr->type != 0){//!è®¡ç®—åç¼€è¡¨è¾¾å¼
         struct node ans;
         ans.type = INT;
-        if(ptr->type == CHAR){//ÔËËã·û
+        if(ptr->type == CHAR){//è¿ç®—ç¬¦
             int b = pte->data;
             pop(pte);
             int a = pte->data;
@@ -159,7 +163,7 @@ int main()
                     ans.data = a/b;break;
             }
             pte = push(&ans, pte);
-        }else{//Êı×Ö
+        }else{//æ•°å­—
             pte = push(ptr, pte);
         }
         pop(ptr);

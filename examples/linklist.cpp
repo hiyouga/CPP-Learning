@@ -11,5 +11,7 @@ int main()
 	cout << ld.ListLength() << endl;
 	ld.ReverseList();
 	ld.DispList();
+	ld.SortList();
+	ld.DispList();
 	return 0;
 }

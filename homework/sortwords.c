@@ -1,29 +1,9 @@
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
 #define MAXN 99
 
-int cmp(char * m, char * n)///比较函数，m<n返回1，m>n返回2，m=n返回3
-{
-    int i = 0, j = 0;
-    while(m[i] != '\0' && n[j] != '\0'){
-        if(m[i] > n[j])
-            return 2;
-        if(m[i] < n[j])
-            return 1;
-        i++, j++;
-    }
-    while(m[i] != '\0') i++;
-    while(n[j] != '\0') j++;
-    if(i < j)
-        return 1;
-    if(i > j)
-        return 2;
-    if(i == j)
-        return 3;
-    return 0;
-}
-
-void swap(int * m, int * n)
+void swap(int * m, int * n)///交换函数
 {
     int r = *m;
     *m = *n;
@@ -35,19 +15,19 @@ int main(int argc, const char * argv[])
     int i, j, ans, t = 0, max_p, flag = 0, k = 0, m = 0, hash[MAXN];
     char c, list[MAXN][MAXN];
     FILE * in, * out;
-
-    if(argc != 3) return -1;
+    ///打开文件
+    if(argc != 3) return -1;///命令行参数错误
     in = fopen(argv[1], "r");
     out = fopen(argv[2], "w");
-
+    ///处理文件内容
     while((c = fgetc(in)) != EOF){
-        if(isalpha(c)){
+        if(isalpha(c)){///添加单词
             list[k][m++] = c;
             flag = 1;
         }else{
             if(flag){
                 hash[t++] = k;///散列寻址表
-                list[k++][m] = '\0';
+                list[k++][m] = '\0';///k增加1
                 m = 0;
                 flag = 0;
             }
@@ -57,23 +37,23 @@ int main(int argc, const char * argv[])
         hash[t++] = k;
         list[k++][m] = '\0';
     }
-    for(i = 0; i < k; i++){///选择排序(伪
+    ///选择排序(伪
+    for(i = 0; i < k; i++){
         max_p = i;
-        if(max_p == -1) continue;
         for(j = i+1; j < k; j++){
-            ans = cmp(list[hash[max_p]], list[hash[j]]);
-            if(ans == 2){
+            ans = strcmp(list[hash[max_p]], list[hash[j]]);///比较字符串
+            if(ans > 0){
                 max_p = j;
-            }else if(ans == 3){
+            }else if(ans == 0){
                 hash[j] = -1;///清除元素
             }
         }
-        if(max_p != i)
+        if(max_p != i)///寻址表元素交换
             swap(&hash[i], &hash[max_p]);
     }
+    ///输出到文件
     for(i = 0; i < k; i++){
-        if(hash[i] != -1){
-            puts(list[hash[i]]);
+        if(hash[i] != -1){///跳过重复单词
             fputs(list[hash[i]], out);
             fputc(' ', out);
         }

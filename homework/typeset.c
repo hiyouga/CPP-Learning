@@ -11,7 +11,7 @@ int main()
     getchar();
     while(gets(str)){
         k = 0, flag = 0, m = 0, dp = 0;
-        for(r = 0; str[r] != '\0'; r++){
+        for(r = 0; str[r] != '\0'; r++){///将句子拆分为单词
             if(!isspace(str[r]) && str[r] != ':'){
                 list[k][m++] = str[r];
                 flag = 1;
@@ -23,7 +23,7 @@ int main()
                 }
             }
             if(str[r] == ':')
-                dp = k;///冒号位置
+                dp = k;///记录冒号位置
         }
         if(flag){///处理最后一个单词
             list[k++][m] = '\0';

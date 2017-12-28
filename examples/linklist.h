@@ -96,7 +96,7 @@ void LinkList<T>::DispList()
 }
 
 template <typename T>
-bool LinkList<T>::isempty()
+bool LinkList<T>::isempty() const
 {
 	return (head->nxt == NULL);
 }
@@ -198,10 +198,19 @@ bool LinkList<T>::DeleteList(int i)
 template <typename T>
 void LinkList<T>::SortList()
 {
-	LinkNode<T> * p;
-	p = head;
-	
-
+	LinkNode<T> * p, * q, * s;
+	T temp;
+	for(p = head->nxt; p->nxt != NULL; p = p->nxt){
+		s = p;
+		for(q = p->nxt; q != NULL; q = q->nxt){
+			if(q->val < s->val) s = q;
+		}
+		if(s != p){
+			temp = p -> val;
+			p -> val = s -> val;
+			s -> val = temp;
+		}
+	}
 }
 
 template <typename T>
