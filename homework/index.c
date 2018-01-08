@@ -96,5 +96,13 @@ int main()
         }
         fprintf(out, "\n");
     }
+    for(i = 0; i < t; i++){
+        np = lst[i].pos;
+        for(j = 0; np != NULL; j++){
+            PNode q = np;
+            np = np -> nxt;
+            free(q);
+        }
+    }
     return 0;
 }

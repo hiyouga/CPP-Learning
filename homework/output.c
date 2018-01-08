@@ -1,0 +1,1 @@
+#include<stdio.h>main(){int,,;scanf("%d%d",&,&);=+;printf("%d",);}
