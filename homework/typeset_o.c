@@ -6,15 +6,12 @@
 int main()
 {
     int i, j, r, u, k, n, dp, flag, m;
-    FILE * in, * out;
     char str[MAXN], nst[MAXN], list[50][MAXN];
-    in = fopen("listin.txt", "r");
-    out = fopen("listout.txt", "w");
     scanf("%d", &n);
     getchar();
-    while(fgets(str, MAXN, in)){
+    while(gets(str)){
         k = 0, flag = 0, m = 0, dp = 0;
-        for(r = 0; (str[r] != '\0') && (str[r] != '\n'); r++){///将句子拆分为单词
+        for(r = 0; str[r] != '\0'; r++){///将句子拆分为单词
             if(!isspace(str[r]) && str[r] != ':'){
                 list[k][m++] = str[r];
                 flag = 1;
@@ -32,33 +29,29 @@ int main()
             list[k++][m] = '\0';
         }
         ///合并到新字符串
-        nst[n-1] = ':';
+        nst[n] = ':';
         ///处理冒号前字符串
-        i = 0;
-        for(j = 0; j < dp; j++){
-            for(u = 0; list[j][u] != '\0'; u++){
-                nst[i++] = list[j][u];
+        i = n - 1;
+        for(j = dp - 1; j >= 0; j--){
+            nst[i--] = ' ';
+            for(u = strlen(list[j])-1; u >=0; u--){
+                nst[i--] = list[j][u];
             }
-            nst[i++] = ' ';
         }
-        while(i < n-1){
+        while(i >= 0){
             nst[i] = ' ';
-            i++;
+            i--;
         }
-        i = n;
+        i = n + 1;
         ///处理冒号后字符串
         for(j = dp; j < k; j++){
             nst[i++] = ' ';
-            for(u = 0; list[j][u] != '\0'; u++){
+            for(u = 0; u < strlen(list[j]); u++){
                 nst[i++] = list[j][u];
             }
         }
         nst[i] = '\0';
-        //puts(nst);
-        fputs(nst, out);
-        fputc('\n', out);
+        puts(nst);
     }
-    fclose(in);
-    fclose(out);
     return 0;
 }

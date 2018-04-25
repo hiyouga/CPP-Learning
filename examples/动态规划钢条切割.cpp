@@ -45,14 +45,14 @@ int cutpod(int * p, int n)//!自底向上的递归求解
         int q = -1;
         for(int i = 1; i <= j; i++){
             q = max(q, p[i-1] + r[j-i]);
-            //cout << "j=" << j << ", q = max(" << q << ", p[" << i << "] + r[" << j-i << "]);" << endl;
+            cout << "j=" << j << ", q = max(" << q << ", p[" << i << "] + r[" << j-i << "]);" << endl;
         }
         r[j] = q;
     }
     return r[n];
 }
 
-void ext_cutpod(int * t, int * p, int n)//返回最优解的自底向上求解
+void ext_cutpod(int * t, int * p, int n)///返回最优解的自底向上求解
 {
     int r[n+1];
     r[0] = 0;

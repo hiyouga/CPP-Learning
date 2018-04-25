@@ -1,24 +1,9 @@
 #include <iostream>
 #define NOTLE ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-#define MOD 1e7+7
 using namespace std;
 
-long long s = 1;
-
-void rab(int x, int n)
-{
-    if(n == 0){
-        return ;
-    }
-    if(x >= 5){
-        s++;
-        rab(x+1, n-1);
-        rab(1, n-1);
-    }else{
-        rab(x+1, n-1);
-        if(x+1 == 5) rab(1, n-1);
-    }
-}
+const int MOD = 1e7+7;
+long long s = 0;
 
 int main()
 {
@@ -26,8 +11,19 @@ int main()
 
 	int n;
 	cin >> n;
-	rab(1, n);
-	s %= long(MOD);
-	cout << s << endl;
+    long long a[5] = {1, 0, 0, 0, 0};
+    for(int i = 1; i < n; i++){
+        a[4] += a[3];
+        for(int j = 3; j > 0; j--){
+            a[j] = a[j-1];
+        }
+        a[0] = a[4];
+        /*for(int j = 0; j < 5; j++)
+            cout << a[j] << ends;
+        cout << endl;*/
+    }
+    for(int i = 0; i < 5; i++)
+        s += a[i];
+    cout << s % MOD << endl;
 	return 0;
 }

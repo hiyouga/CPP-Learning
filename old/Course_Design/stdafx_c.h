@@ -1,4 +1,4 @@
-﻿// stdafx.h : Commonly used C header file
+// stdafx.h : Commonly used C header file
 
 #ifndef STDAFX_H_INCLUDED
 #define STDAFX_H_INCLUDED

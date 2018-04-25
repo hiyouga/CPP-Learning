@@ -36,7 +36,7 @@ int main()
 			lne++;
 			continue;
 		}
-		if(str[i] == '"'){
+		if(str[i] == '\"'){
 			flag = flag?0:1;
 		}
 		if(!flag)
