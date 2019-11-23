@@ -1,5 +1,5 @@
 /*
- Author: ֣ҫ��
+ Author: ֣ҫ��
  Result: AC	Submission_id: 323265
  Created at: Thu Oct 19 2017 10:45:03 GMT+0800 (CST)
  Problem_id: 22	Time: 1	Memory: 2648

@@ -1,4 +1,4 @@
-//C calculator BY hoshi_hiyouga AT 2017-11-10 03:22 LAST MODIFIED IN 2017-11-21 23:11
+// C calculator BY hoshi_hiyouga AT 2017-11-10 03:22 LAST MODIFIED IN 2017-11-21 23:11
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

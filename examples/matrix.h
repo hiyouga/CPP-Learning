@@ -16,6 +16,7 @@ public:
 	T read(int i, int j);
 	bool write(int i, int j, T e);
 	void dump();
+	T norm();
 	Matrix<T> transpose();
 	Matrix<T>& operator =(const Matrix &Q);
 	Matrix<T> operator +(const Matrix &Q);
@@ -80,6 +81,16 @@ void Matrix<T>::dump()
 		}
 		cout << endl;
 	}
+}
+
+template <typename T>
+T Matrix<T>::norm()
+{
+	T sum = 0;
+	for (int i = 0; i < M * N; i++) {
+		sum += *(Val + i * N + j);
+	}
+	return sum;
 }
 
 template <typename T>
