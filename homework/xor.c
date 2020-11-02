@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void sort(int * a, int l)///ÊµÏÖÑ¡ÔñÅÅĞò
+void sort(int * a, int l)///å®ç°é€‰æ‹©æ’åº
 {
     int max_p, i, j, temp;
     for(i = 0; i < l; i++){
@@ -16,21 +16,21 @@ void sort(int * a, int l)///ÊµÏÖÑ¡ÔñÅÅĞò
 
 int main()
 {
-    ///³õÊ¼»¯±äÁ¿
+    ///åˆå§‹åŒ–å˜é‡
     int t, m = 0, n = 0, i = 0, p = 0, q = 0, k, a[25], b[25], s[45];
     char c;
-    ///ÊäÈëÊı×Ö
+    ///è¾“å…¥æ•°å­—
     do{
         scanf("%d%c", &t, &c);
         a[m++] = t;
     }while(c != '\n');
-    sort(a, m);///ÊäÈëºóÁ¢¼´ÅÅĞò
+    sort(a, m);///è¾“å…¥åç«‹å³æ’åº
     do{
         scanf("%d%c", &t, &c);
         b[n++] = t;
     }while(c != '\n');
     sort(b, n);
-    ///ºÏ²¢ĞÂµÄÊı×é
+    ///åˆå¹¶æ–°çš„æ•°ç»„
     while(p < m && q < n){
         if(a[p] == b[q]){
             p++, q++;
@@ -40,7 +40,7 @@ int main()
             s[i++] = b[q++];
         }
     }
-    ///½«Ê£ÓàÊı×Ö·ÅÈë
+    ///å°†å‰©ä½™æ•°å­—æ”¾å…¥
     while(p < m) s[i++] = a[p++];
     while(q < n) s[i++] = b[q++];
     for(k = 0; k < i; k++){
